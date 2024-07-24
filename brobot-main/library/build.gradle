@@ -1,0 +1,115 @@
+ plugins {
+    ///In a library, you typically want to avoid the org.springframework.boot plugin, as Spring Boot is designed for standalone applications. Your library should not impose Spring Boot's conventions on the projects that use it. So, you can exclude this plugin.
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'io.freefair.lombok' version '8.6' //'6.6.3' // the lombok version is aligned with the gradle version
+    id 'maven-publish'
+    id 'signing'
+}
+
+java {
+    sourceCompatibility = '20'
+}
+
+ configurations {
+     compileOnly {
+         extendsFrom annotationProcessor
+     }
+ }
+
+group 'io.github.jspinak.brobot'
+version '1.0.7'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'org.springframework:spring-core:6.1.3'
+    implementation 'org.springframework:spring-context:6.1.3'
+    implementation 'org.springframework:spring-beans:6.1.3'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation('com.sikulix:sikulixapi:2.0.5') {
+        exclude group: 'org.slf4j', module: 'slf4j-nop'
+    }
+
+    implementation group: 'org.bytedeco', name: 'javacv-platform', version: '1.5.10'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    implementation 'com.github.kwhat:jnativehook:2.2.2'
+
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+
+            groupId = 'io.github.jspinak'
+            artifactId = 'brobot'
+            version = '1.0.7'
+            from components.java
+
+            pom {
+                name = 'brobot'
+                description = 'testable state-based automation'
+                url = 'https://github.com/jspinak/brobot'
+                inceptionYear = '2022'
+
+                licenses {
+                    license {
+                        name = 'MIT license'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'jspinak'
+                        name = 'Joshua Spinak'
+                        email = 'jspinak@hotmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git:github.com/jspinak/brobot.git'
+                    developerConnection = 'scm:git"ssh//github.com:jspinak/brobot.git'
+                    url = 'https://github.com/jspinak/brobot'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            //url = "https://s01.oss.sonatype.org/content/repositories/snapshots/" // for snapshots
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/" // for releases
+            credentials {
+                username = project.properties["ossrhUsername"]
+                password = project.properties["ossrhPassword"]
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}

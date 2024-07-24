@@ -1,0 +1,16 @@
+# IDE
+/**/.idea/*
+/**/shelf/
+
+# Production
+.gradle
+/library/.gradle
+/**/build
+
+# Maven Central
+/library/gradle.properties
+
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
