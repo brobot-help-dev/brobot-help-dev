@@ -1,0 +1,4 @@
+.gradle
+build
+test.db
+src/main/java/com/example/mrdoob/old
