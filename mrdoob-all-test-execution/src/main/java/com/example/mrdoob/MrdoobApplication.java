@@ -1,4 +1,4 @@
-package com.example.mrdoob.old;
+package com.example.mrdoob;
 
 import io.github.jspinak.brobot.manageStates.InitialStates;
 import org.sikuli.script.ImagePath;

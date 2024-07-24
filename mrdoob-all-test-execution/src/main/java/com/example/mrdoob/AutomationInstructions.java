@@ -1,4 +1,4 @@
-package com.example.mrdoob.old;
+package com.example.mrdoob;
 
 import io.github.jspinak.brobot.manageStates.StateTransitionsManagement;
 import org.springframework.stereotype.Component;

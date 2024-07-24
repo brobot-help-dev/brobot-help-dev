@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/brobot-help-dev.iml" filepath="$PROJECT_DIR$/.idea/brobot-help-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/io.github.jspinak.brobot.mrdoob.main.iml" filepath="$PROJECT_DIR$/.idea/modules/io.github.jspinak.brobot.mrdoob.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mrdoob.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mrdoob.main.iml" />
     </modules>
   </component>
 </project>
