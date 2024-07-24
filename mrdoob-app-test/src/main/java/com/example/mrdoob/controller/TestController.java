@@ -33,25 +33,13 @@ public class TestController {
     // Realize only one specific test
     @GetMapping("/startTest")
     public Map<String, Object> startTest(@RequestParam String testName) {
-        boolean result = false;
         // Check which test was asked by the user
-        switch (testName) {
-            case "homepage":
-                result = checkHomepage();
-                updateToDatabase("homepage","Only",result);
-                break;
-            case "harmony":
-                result = checkHarmony();
-                updateToDatabase("harmony","Only",result);
-                break;
-            case "about":
-                result = checkAbout();
-                updateToDatabase("about","Only",result);
-                break;
-            case "source":
-                result = checkSource();
-                updateToDatabase("source","Only",result);
-                break;
+        boolean result = switch (testName) {
+            case "homepage" -> checkHomepage();
+            case "harmony" -> checkHarmony();
+            case "about" -> checkAbout();
+            case "source" -> checkSource();
+            default -> false;
         };
         return createResponse(result);
     }
@@ -65,25 +53,13 @@ public class TestController {
         // loop to realize all the test asked
         for (int i = 0; i <= index; i++) {
             String step = listStates.get(i);
-            boolean stepResult = false;
             // Check which test was asked by the user
-            switch (step) {
-                case "homepage":
-                    stepResult = checkHomepage();
-                    updateToDatabase("homepage","All",stepResult);
-                    break;
-                case "harmony":
-                    stepResult = checkHarmony();
-                    updateToDatabase("harmony","All",stepResult);
-                    break;
-                case "about":
-                    stepResult = checkAbout();
-                    updateToDatabase("about","All",stepResult);
-                    break;
-                case "source":
-                    stepResult = checkSource();
-                    updateToDatabase("source","All",stepResult);
-                    break;
+            boolean stepResult = switch (step) {
+                case "homepage" -> checkHomepage();
+                case "harmony" -> checkHarmony();
+                case "about" -> checkAbout();
+                case "source" -> checkSource();
+                default -> false;
             };
             response.put(step, stepResult);
         }
@@ -126,12 +102,5 @@ public class TestController {
         Map<String, Object> response = new HashMap<>();
         response.put("result", result);
         return response;
-    }
-
-    // Get the date and call the function to update the test results to the database
-    private void updateToDatabase(String name, String status, Boolean check){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        DatabaseController.addTest(name,status,check,dtf.format(now));
     }
 }
