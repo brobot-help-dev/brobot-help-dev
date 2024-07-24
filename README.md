@@ -1,4 +1,4 @@
-# brobot-help-dev
+# Brobot Help Project
 
 # Goal of this project
 - Help people who want to use Brobot
@@ -9,7 +9,7 @@
 # Organisation of this project
 This project is divided into several parts:
 ### brobot-app
-The Brobot application. It can find in the original github here :
+The Brobot application. You can find it in the original GitHub here :
 
 https://github.com/jspinak/brobot
 
