@@ -7,7 +7,8 @@
 
 
 # Organisation of this project
-## brobot-app
+This project is divided into several parts:
+### brobot-app
 The Brobot application. It can find in the original github here :
 
 https://github.com/jspinak/brobot
@@ -18,7 +19,7 @@ official documentation :
 https://jspinak.github.io/brobot/ 
 
 
-## mrdoob-app-test
+### mrdoob-app-test
 A test application made to explain the basic operation of brobot.
 You can find more information about it in the
 [README](https://github.com/brobot-help-dev/brobot-help-dev/blob/main/mrdoob-app-test/README.md) of the project.
